@@ -1,10 +1,33 @@
 ---
 title: "Report"
+author:
+  - Ikareach Kimhor (Matin)
+  - Ari Cohen
+  - Joseph Saputra
+format: html
+date: "2026-10-23"
 ---
 
-Your report goes here.
-
+# Library Used
 ```{r}
-# a test code chunk
+library (tidyverse)
+library (stringr)
+library (dplyr)
+
+# for API import
+library(FAOSTAT)
 ```
+
+# Data Import
+```{r}
+df_subset <- read_fao(
+  area_codes = "8", 
+  element_codes = "5110", 
+  item_codes = "6620", 
+  year_codes = "2017"
+)
+
+head(df_subset)
+```
+
 
