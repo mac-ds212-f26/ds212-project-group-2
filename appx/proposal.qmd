@@ -1,5 +1,29 @@
 ---
-title: "Proposal"
+title: "Food Report"
+author:
+  - Ikareach Kimhor (Matin)
+  - Ari Cohen
+  - Joseph Saputra
+format: html
+date: "2026-10-23"
+description: "Our research question: ???"
 ---
+# Library Used
 
-Your proposal go here.
+```{r}
+library (tidyverse)
+library (stringr)
+library (dplyr)
+library (purrr)
+library (FAOSTAT)
+library (broom)
+library (janitor)
+library (readxl)
+```
+
+# Data
+## Import
+```{r}
+cmo_data <- read_excel(".../data/raw/CMO-Historical-Data-Annual.xlsx")
+```
+
