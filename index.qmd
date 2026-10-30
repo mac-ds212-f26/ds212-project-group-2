@@ -1,10 +1,105 @@
 ---
-title: "Report"
+title: "Food Report"
+author:
+  - Ikareach Kimhor (Matin)
+  - Ari Cohen
+  - Joseph Saputra
+format: html
+date: "2026-10-23"
 ---
 
-Your report goes here.
+# Library Used
 
 ```{r}
-# a test code chunk
+library (tidyverse)
+library (stringr)
+library (dplyr)
+library (purrr)
+library (FAOSTAT)
+library (broom)
+library (janitor)
 ```
 
+# Data
+<!-- ## Import and Combining -->
+<!-- ``` {r} -->
+<!-- df_security  <- read.csv("data/processed/Food_Security_Data_E_All_Data_(Normalized).csv", encoding = "latin-1", stringsAsFactors = FALSE) -->
+<!-- df_fbs_curr  <- read.csv("data/processed/FoodBalanceSheets_E_All_Data_(Normalized).csv", encoding = "latin-1", stringsAsFactors = FALSE) -->
+<!-- df_fbs_hist  <- read.csv("data/processed/FoodBalanceSheetsHistoric_E_All_Data_(Normalized).csv", encoding = "latin-1", stringsAsFactors = FALSE) -->
+<!-- df_crops     <- read.csv("data/processed/Production_Crops_Livestock_E_All_Data_(Normalized).csv", encoding = "latin-1", stringsAsFactors = FALSE) -->
+
+<!-- df_security <- df_security %>% mutate(Year = as.character(Year), Value = as.character(Value), Item.Code = as.character(Item.Code), Area.Code = as.character(Area.Code)) -->
+<!-- df_fbs_curr <- df_fbs_curr %>% mutate(Year = as.character(Year), Value = as.character(Value), Item.Code = as.character(Item.Code), Area.Code = as.character(Area.Code)) -->
+<!-- df_fbs_hist <- df_fbs_hist %>% mutate(Year = as.character(Year), Value = as.character(Value), Item.Code = as.character(Item.Code), Area.Code = as.character(Area.Code)) -->
+<!-- df_crops    <- df_crops    %>% mutate(Year = as.character(Year), Value = as.character(Value), Item.Code = as.character(Item.Code), Area.Code = as.character(Area.Code)) -->
+
+<!-- faostat_combined_df <- bind_rows( -->
+<!--   df_security, -->
+<!--   df_fbs_curr, -->
+<!--   df_fbs_hist, -->
+<!--   df_crops) -->
+<!-- ``` -->
+
+<!-- ## Data Cleaning -->
+<!-- ``` {r} -->
+<!-- faostat_combined_df <- faostat_combined_df %>% -->
+<!--   mutate(Value = as.numeric(Value)) -->
+
+<!-- analysis_df <- faostat_combined_df %>% -->
+<!--   mutate( -->
+<!--     Value = as.numeric(Value), -->
+<!--     Year = as.numeric(Year)) %>% -->
+<!--   filter(!is.na(Value), !is.na(Year)) -->
+
+<!-- element_summary <- analysis_df %>% -->
+<!--   distinct(Element) -->
+
+<!-- print(element_summary) -->
+<!-- ``` -->
+
+## API Connection
+```{r}
+faostat_login(
+  username = "ikimhor",
+  password = "jIwvuv-woqwad-5ruxqu")
+
+df_security <- get_faostat_bulk(code = "FS")
+data_folder <- "data_raw"
+if(!dir.exists(data_folder)) dir.create(data_folder)
+
+df_security <- get_faostat_bulk(code = "FS", data_folder = data_folder)
+df_fbs_curr <- get_faostat_bulk(code = "FBS", data_folder = data_folder)
+df_fbs_hist <- get_faostat_bulk(code = "FBSH", data_folder = data_folder)
+df_crops    <- get_faostat_bulk(code = "QCL", data_folder = data_folder)
+```
+
+## API Data Cleaning
+```{r}
+df_security_clean <- df_security %>%
+  mutate(
+    item_code = as.integer(item_code),
+    value = as.numeric(value),
+    year = as.numeric(substr(year, 1, 4))
+  )
+
+analysis_df <- bind_rows(
+    df_security_clean,
+    df_fbs_curr %>% mutate(year = as.numeric(year)),
+    df_fbs_hist %>% mutate(year = as.numeric(year)),
+    df_crops %>% mutate(year = as.numeric(year))
+  ) %>%
+  janitor::clean_names() %>%
+  mutate(
+    value = as.numeric(value)
+  ) %>%
+  filter(!is.na(value), !is.na(year))
+```
+
+# Research Question
+
+> Which countries or regions are predicted to fall below the target daily caloric threshold by 2040 under current production trajectories?
+
+# Initial Exploration
+```{r}
+
+```
