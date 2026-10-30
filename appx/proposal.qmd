@@ -18,12 +18,18 @@ library (purrr)
 library (FAOSTAT)
 library (broom)
 library (janitor)
-library (readxl)
+library (fable)
 ```
 
 # Data
 ## Import
 ```{r}
-cmo_data <- read_excel(".../data/raw/CMO-Historical-Data-Annual.xlsx")
+CMO_AnnualPrice <- read_csv("../data/raw/CMO-AnnualPrice.csv")
+CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
+```
+
+## Data Cleaning
+```{r}
+CMO_AnnualPrice <- CMO_AnnualPrice[-c(67:77), ] # dropping the empty rows
 ```
 
