@@ -1,0 +1,171 @@
+---
+title: "Food Report"
+author:
+  - Ikareach Kimhor (Matin)
+  - Ari Cohen
+  - Joseph Saputra
+format: html
+date: "2026-10-23"
+description: "Our research question: ???"
+---
+# Library Used
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(vars)
+library(tseries)
+library(conflicted)
+
+conflicts_prefer(dplyr::select)
+
+```
+
+# Data
+## Import
+```{r}
+CMO_AnnualPrice <- read_csv("../data/raw/CMO-AnnualPrice.csv")
+CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
+
+```
+
+## Data Cleaning
+```{r}
+CMO_AnnualPrice <- CMO_AnnualPrice[-c(67:77), ] # dropping the empty rows
+
+cmo_clean <- CMO_AnnualPrice_Real %>%
+  select(-starts_with("...")) %>%
+  mutate(across(where(is.character), ~na_if(., "…"))) %>%
+  mutate(across(-Year, as.numeric)) %>%
+  clean_names()
+
+```
+
+
+
+
+## Project description
+
+Moccachino is the most amazing caffeine source that humanity has ever come up with (according to me), coffee, chocolate are traded everyday across the globe. We want to know whether cocoa and two major types of coffee, Arabica and Robusta, became more expensive at the same time We will compare their annual prices and then look at cocoa production to see whether changes in harvests lined up with the sharpest price increases.
+
+## Research questions
+
+How did inflation-adjusted prices for cocoa, Arabica coffee, and Robusta coffee change from 2000 to 2025?
+
+
+## Wrangling the dataset
+```{r}
+food_prices <- CMO_AnnualPrice %>%
+  filter(Year >= 2000, Year <= 2025) %>%
+  select(
+    Year,
+    Cocoa,
+    Arabica = `Coffee, Arabica`,
+    Robusta = `Coffee, Robusta`
+  ) %>%
+  pivot_longer(
+    cols = -Year,
+    names_to = "commodity",
+    values_to = "price"
+  )
+```
+
+
+
+
+
+#Visualization 1
+```{r}
+ggplot(food_prices, aes(x = Year, y = price, color = commodity)) +
+  geom_line() +
+  labs(
+    title = "How cocoa and coffee prices changed from 2000 to 2025",
+    x = "Year",
+    y = "Price per kilogram (2010 U.S. dollars)",
+    color = "Commodity",
+    caption = "Source: World Bank Commodity Price Data"
+  ) +
+  theme_minimal()
+```
+
+
+
+>Cocoa and coffee prices rose in the last few years of our data, but their biggest jumps happened at different times. Cocoa went from $2.88 to $6.37 per kilogram between 2023 and 2024. Robusta also rose sharply in 2024, while Arabica had its biggest recent jump in 2025. This makes us want to look at what was happening to cocoa harvests when its price jumped.
+
+
+
+
+## Time Series Data
+```{r}
+model_data <- cmo_clean %>%
+  select(year, crude_oil_average, urea, rice_thai_5_percent) %>%
+  drop_na()
+
+ts_data <- ts(model_data[, c("crude_oil_average", "urea", "rice_thai_5_percent")], 
+              start = min(model_data$year), 
+              frequency = 1)
+
+```
+
+# Analysis
+## VAR Model
+```{r}
+var_model <- vars::VAR(ts_data, p = 2, type = "both")
+summary(var_model)
+```
+
+## 10-Year Forecast
+```{r}
+forecast_10yr <- predict(var_model, n.ahead = 10, ci = 0.95)
+
+plot(forecast_10yr, 
+     names = "rice_thai_5_percent", 
+     main = "10-Year Forecast: Benchmark SEA Rice Prices",
+     xlab = "Year", 
+     ylab = "Real Price ($/mt)")
+```
+
+## Impulse Response Function (IRF)
+```{r}
+irf_model <- irf(var_model, 
+                 impulse = "urea", 
+                 response = "rice_thai_5_percent", 
+                 n.ahead = 10, 
+                 boot = TRUE)
+
+irf_df <- data.frame(
+  year_after_shock = 0:10,
+  estimate = as.numeric(irf_model$irf$urea),
+  lower_ci = as.numeric(irf_model$Lower$urea),
+  upper_ci = as.numeric(irf_model$Upper$urea)
+)
+
+# Build the custom ggplot
+ggplot(irf_df, aes(x = year_after_shock, y = estimate)) +
+  # Add the baseline (zero impact)
+  geom_hline(yintercept = 0, color = "black", size = 0.8, linetype = "dashed") +
+  # Add the confidence interval ribbon (shaded area)
+  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci), fill = "#D95F02", alpha = 0.2) +
+  # Add the main estimate line
+  geom_line(color = "#D95F02", size = 1.2) +
+  # Add data points on the line
+  geom_point(color = "#D95F02", size = 3) +
+  # Professional aesthetic styling
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, margin = margin(b = 10)),
+    plot.subtitle = element_text(color = "gray40", margin = margin(b = 20)),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  ) +
+  labs(
+    title = "Macroeconomic Shock: Impact of Fertilizer Costs on Mekong Rice",
+    subtitle = "Impulse Response Function (VAR Model): Response to a systemic Urea price spike",
+    x = "Years Following the Initial Shock",
+    y = "Change in Rice Price ($/mt)",
+    caption = "Proxy applied for Cambodian Rice Markets | 95% Bootstrap CI"
+  ) +
+  scale_x_continuous(breaks = seq(0, 10, 2))
+
+```
+
