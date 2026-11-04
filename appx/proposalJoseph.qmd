@@ -33,3 +33,54 @@ CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
 CMO_AnnualPrice <- CMO_AnnualPrice[-c(67:77), ] # dropping the empty rows
 ```
 
+
+
+
+## Project description
+
+Moccachino is the most amazing caffeine source that humanity has ever come up with (according to me), coffee, chocolate are traded everyday across the globe. We want to know whether cocoa and two major types of coffee, Arabica and Robusta, became more expensive at the same time We will compare their annual prices and then look at cocoa production to see whether changes in harvests lined up with the sharpest price increases.
+
+## Research questions
+
+How did inflation-adjusted prices for cocoa, Arabica coffee, and Robusta coffee change from 2000 to 2025?
+
+
+## Wrangling the dataset
+```{r}
+food_prices <- CMO_AnnualPrice %>%
+  filter(Year >= 2000, Year <= 2025) %>%
+  select(
+    Year,
+    Cocoa,
+    Arabica = `Coffee, Arabica`,
+    Robusta = `Coffee, Robusta`
+  ) %>%
+  pivot_longer(
+    cols = -Year,
+    names_to = "commodity",
+    values_to = "price"
+  )
+```
+
+
+
+
+
+#Visualization 1
+```{r}
+ggplot(food_prices, aes(x = Year, y = price, color = commodity)) +
+  geom_line() +
+  labs(
+    title = "How cocoa and coffee prices changed from 2000 to 2025",
+    x = "Year",
+    y = "Price per kilogram (2010 U.S. dollars)",
+    color = "Commodity",
+    caption = "Source: World Bank Commodity Price Data"
+  ) +
+  theme_minimal()
+```
+
+
+
+>Cocoa and coffee prices rose in the last few years of our data, but their biggest jumps happened at different times. Cocoa went from $2.88 to $6.37 per kilogram between 2023 and 2024. Robusta also rose sharply in 2024, while Arabica had its biggest recent jump in 2025. This makes us want to look at what was happening to cocoa harvests when its price jumped.
+
