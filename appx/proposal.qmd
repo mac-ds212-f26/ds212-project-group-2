@@ -1,14 +1,10 @@
 ---
 title: "Sunny Side Egg"
-author:
-  - Ikareach Kimhor (Matin)
-  - Ari Cohen
-  - Joseph Saputra
-format: html
-date: "2026-11-11"
-description: "We wanted to explore the CMO dataset to understand the relationship between different commodities of various countries overtime, potentially exploring forecasting models for price prediction."
 ---
-# Library Used
+## Description
+> We wanted to explore the CMO dataset to understand the relationship between different commodities of various countries overtime, potentially exploring forecasting models for price prediction.
+
+## Library Used
 
 ```{r}
 library(tidyverse)
@@ -20,8 +16,8 @@ library(conflicted)
 conflicts_prefer(dplyr::select)
 ```
 
-# Reasoning
-## Research Questions
+## Reasoning
+### Research Questions
 
 > Matin: What is the effect of fertilizers price on jasmine rice in the south east asian region?
 
@@ -29,15 +25,15 @@ conflicts_prefer(dplyr::select)
 
 > Ari: To understand the effects of crude oil prices impact different groups of commodities in terms of price or price projections.
 
-## Reason for Exploration
+### Reason for Exploration
 
 > Group interests in the idea of how macroeconomics affects the world we live in, and our daily lives in regards to food materials.
 
-## Communication Policy
+### Communication Policy
 
 > We have created a google chat, and we will be meeting every Thursday weekly at 3-4PM for overseeing process.
 
-## Roles
+### Roles
 
 > Matin: technical assistant and main person of contact; will talk with Amin and preceptors
 
@@ -45,7 +41,7 @@ conflicts_prefer(dplyr::select)
 
 > Joseph: Team Leader
 
-## Conflict Resolution
+### Conflict Resolution
 
 > We will adapt to any sudden changes, and if anyone needs help we would offer replacement tasks. Accomodation is key in our group, and we will periodically checkup with each group members with their assigned tasks.
 
@@ -53,8 +49,8 @@ conflicts_prefer(dplyr::select)
 
 > Ch1: Everyone comes up with a research question and initial plan or visualization so that we can vote on which is the best paths.
 
-# Data
-## Import
+## Data
+### Import
 ```{r}
 CMO_AnnualPrice <- read_csv("../data/raw/CMO-AnnualPrice.csv")
 CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
@@ -62,7 +58,7 @@ CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
 
 > CMO: Commodity Markets Output
 
-## Data Cleaning
+### Data Cleaning
 ```{r}
 CMO_AnnualPrice <- CMO_AnnualPrice[-c(67:77), ] # dropping the empty rows
 
@@ -73,7 +69,7 @@ cmo_clean <- CMO_AnnualPrice_Real %>%
   clean_names()
 ```
 
-## Time Series Data
+### Time Series Data
 ```{r}
 model_data <- cmo_clean %>%
   select(year, crude_oil_average, urea, rice_thai_5_percent) %>%
@@ -85,14 +81,14 @@ ts_data <- ts(model_data[, c("crude_oil_average", "urea", "rice_thai_5_percent")
 
 ```
 
-# Analysis
-## VAR Model
+## Analysis
+### VAR Model
 ```{r}
 var_model <- vars::VAR(ts_data, p = 2, type = "both")
 summary(var_model)
 ```
 
-## 10-Year Forecast
+### 10-Year Forecast
 ```{r}
 forecast_10yr <- predict(var_model, n.ahead = 10, ci = 0.95)
 
@@ -103,7 +99,7 @@ plot(forecast_10yr,
      ylab = "Real Price ($/mt)")
 ```
 
-## Impulse Response Function (IRF)
+### Impulse Response Function (IRF)
 ```{r}
 irf_model <- irf(var_model, 
                  impulse = "urea", 
@@ -139,6 +135,3 @@ ggplot(irf_df, aes(x = year_after_shock, y = estimate)) +
   ) +
   scale_x_continuous(breaks = seq(0, 10, 2))
 ```
-
-
-

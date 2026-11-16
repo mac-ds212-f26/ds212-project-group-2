@@ -26,7 +26,6 @@ setwd(getwd())
 ```{r}
 CMO_AnnualPrice <- read_csv("../data/raw/CMO-AnnualPrice.csv")
 CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
-
 ```
 
 ## Data Cleaning

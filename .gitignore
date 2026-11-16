@@ -70,3 +70,7 @@ _freeze/
 *.log
 *.aux
 *.toc
+data_raw/Food_Security_Data_E_All_Data_(Normalized).zip
+data_raw/FoodBalanceSheets_E_All_Data_(Normalized).zip
+data_raw/FoodBalanceSheetsHistoric_E_All_Data_(Normalized).zip
+data_raw/Production_Crops_Livestock_E_All_Data_(Normalized).zip
