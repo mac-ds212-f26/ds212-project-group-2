@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Appendix A — Sunny Side Egg – Project Title</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appx/case-study.html" rel="next">
+<link href="../eda/eda-member3.html" rel="prev">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-aa768d0510026dbab67ce2f8e698749f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ce494e159dae1eb1aeb2beb157b73888.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-aa768d0510026dbab67ce2f8e698749f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../style/custom.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appx/proposal.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appx/proposal.html"><span class="chapter-title">Sunny Side Egg</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/sidebar-logo.png" alt="Random negative space illustration" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/sidebar-logo.png" alt="Random negative space illustration" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Team Name</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Food Report</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">EDA</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../eda/eda-member1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Member 1 First Name &amp; Last Name Initial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../eda/eda-member2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Member 2 First Name &amp; Last Name Initial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../eda/eda-member3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Member 3 First Name &amp; Last Name Initial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appx/proposal.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Sunny Side Egg</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appx/case-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Case Study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wa/wa-member1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Member 1 First Name &amp; Last Name Initial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wa/wa-member2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Member 2 First Name &amp; Last Name Initial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wa/wa-member3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Member 3 First Name &amp; Last Name Initial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
+  <li><a href="#library-used" id="toc-library-used" class="nav-link" data-scroll-target="#library-used">Library Used</a></li>
+  <li><a href="#reasoning" id="toc-reasoning" class="nav-link" data-scroll-target="#reasoning">Reasoning</a>
+  <ul class="collapse">
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
+  <li><a href="#reason-for-exploration" id="toc-reason-for-exploration" class="nav-link" data-scroll-target="#reason-for-exploration">Reason for Exploration</a></li>
+  <li><a href="#communication-policy" id="toc-communication-policy" class="nav-link" data-scroll-target="#communication-policy">Communication Policy</a></li>
+  <li><a href="#roles" id="toc-roles" class="nav-link" data-scroll-target="#roles">Roles</a></li>
+  <li><a href="#conflict-resolution" id="toc-conflict-resolution" class="nav-link" data-scroll-target="#conflict-resolution">Conflict Resolution</a></li>
+  </ul></li>
+  <li><a href="#implementation-plan" id="toc-implementation-plan" class="nav-link" data-scroll-target="#implementation-plan">Implementation Plan</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a></li>
+  <li><a href="#time-series-data" id="toc-time-series-data" class="nav-link" data-scroll-target="#time-series-data">Time Series Data</a></li>
+  </ul></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#var-model" id="toc-var-model" class="nav-link" data-scroll-target="#var-model">VAR Model</a></li>
+  <li><a href="#year-forecast" id="toc-year-forecast" class="nav-link" data-scroll-target="#year-forecast">10-Year Forecast</a></li>
+  <li><a href="#impulse-response-function-irf" id="toc-impulse-response-function-irf" class="nav-link" data-scroll-target="#impulse-response-function-irf">Impulse Response Function (IRF)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appx/proposal.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appx/proposal.html"><span class="chapter-title">Sunny Side Egg</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Appendix A — Sunny Side Egg</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="description" class="level2">
+<h2 class="anchored" data-anchor-id="description">Description</h2>
+<blockquote class="blockquote">
+<p>We wanted to explore the CMO dataset to understand the relationship between different commodities of various countries overtime, potentially exploring forecasting models for price prediction.</p>
+</blockquote>
+</section>
+<section id="library-used" class="level2">
+<h2 class="anchored" data-anchor-id="library-used">Library Used</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(vars)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(conflicted)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">conflicts_prefer</span>(dplyr<span class="sc">::</span>select)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="reasoning" class="level2">
+<h2 class="anchored" data-anchor-id="reasoning">Reasoning</h2>
+<section id="research-questions" class="level3">
+<h3 class="anchored" data-anchor-id="research-questions">Research Questions</h3>
+<blockquote class="blockquote">
+<p>Matin: What is the effect of fertilizers price on jasmine rice in the south east asian region?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Jospeh: To understand the price changes of arabica, cocoa, robusta with regards to macroeconomic state of the world!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Ari: To understand the effects of crude oil prices impact different groups of commodities in terms of price or price projections.</p>
+</blockquote>
+</section>
+<section id="reason-for-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="reason-for-exploration">Reason for Exploration</h3>
+<blockquote class="blockquote">
+<p>Group interests in the idea of how macroeconomics affects the world we live in, and our daily lives in regards to food materials.</p>
+</blockquote>
+</section>
+<section id="communication-policy" class="level3">
+<h3 class="anchored" data-anchor-id="communication-policy">Communication Policy</h3>
+<blockquote class="blockquote">
+<p>We have created a google chat, and we will be meeting every Thursday weekly at 3-4PM for overseeing process.</p>
+</blockquote>
+</section>
+<section id="roles" class="level3">
+<h3 class="anchored" data-anchor-id="roles">Roles</h3>
+<blockquote class="blockquote">
+<p>Matin: technical assistant and main person of contact; will talk with Amin and preceptors</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Ari: technical lead</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Joseph: Team Leader</p>
+</blockquote>
+</section>
+<section id="conflict-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="conflict-resolution">Conflict Resolution</h3>
+<blockquote class="blockquote">
+<p>We will adapt to any sudden changes, and if anyone needs help we would offer replacement tasks. Accomodation is key in our group, and we will periodically checkup with each group members with their assigned tasks.</p>
+</blockquote>
+</section>
+</section>
+<section id="implementation-plan" class="level2">
+<h2 class="anchored" data-anchor-id="implementation-plan">Implementation Plan</h2>
+<blockquote class="blockquote">
+<p>Ch1: Everyone comes up with a research question and initial plan or visualization so that we can vote on which is the best paths.</p>
+</blockquote>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="import" class="level3">
+<h3 class="anchored" data-anchor-id="import">Import</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>CMO_AnnualPrice <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw/CMO-AnnualPrice.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>CMO_AnnualPrice_Real <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw/CMO-AnnualPriceReal.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<p>CMO: Commodity Markets Output</p>
+</blockquote>
+</section>
+<section id="data-cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>CMO_AnnualPrice <span class="ot">&lt;-</span> CMO_AnnualPrice[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">67</span><span class="sc">:</span><span class="dv">77</span>), ] <span class="co"># dropping the empty rows</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>cmo_clean <span class="ot">&lt;-</span> CMO_AnnualPrice_Real <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"..."</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span><span class="fu">na_if</span>(., <span class="st">"…"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span>Year, as.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">clean_names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="time-series-data" class="level3">
+<h3 class="anchored" data-anchor-id="time-series-data">Time Series Data</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>model_data <span class="ot">&lt;-</span> cmo_clean <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">select</span>(year, crude_oil_average, urea, rice_thai_5_percent) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>ts_data <span class="ot">&lt;-</span> <span class="fu">ts</span>(model_data[, <span class="fu">c</span>(<span class="st">"crude_oil_average"</span>, <span class="st">"urea"</span>, <span class="st">"rice_thai_5_percent"</span>)], </span>
+<span id="cb4-6"><a href="#cb4-6"></a>              <span class="at">start =</span> <span class="fu">min</span>(model_data<span class="sc">$</span>year), </span>
+<span id="cb4-7"><a href="#cb4-7"></a>              <span class="at">frequency =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="var-model" class="level3">
+<h3 class="anchored" data-anchor-id="var-model">VAR Model</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>var_model <span class="ot">&lt;-</span> vars<span class="sc">::</span><span class="fu">VAR</span>(ts_data, <span class="at">p =</span> <span class="dv">2</span>, <span class="at">type =</span> <span class="st">"both"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">summary</span>(var_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+VAR Estimation Results:
+========================= 
+Endogenous variables: crude_oil_average, urea, rice_thai_5_percent 
+Deterministic variables: both 
+Sample size: 64 
+Log Likelihood: -939.115 
+Roots of the characteristic polynomial:
+0.6309 0.5815 0.5815  0.45  0.45 0.3849
+Call:
+vars::VAR(y = ts_data, p = 2, type = "both")
+
+
+Estimation results for equation crude_oil_average: 
+================================================== 
+crude_oil_average = crude_oil_average.l1 + urea.l1 + rice_thai_5_percent.l1 + crude_oil_average.l2 + urea.l2 + rice_thai_5_percent.l2 + const + trend 
+
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+crude_oil_average.l1    0.940217   0.193150   4.868  9.6e-06 ***
+urea.l1                -0.017752   0.031060  -0.572   0.5699    
+rice_thai_5_percent.l1  0.007300   0.024828   0.294   0.7698    
+crude_oil_average.l2   -0.259910   0.184121  -1.412   0.1636    
+urea.l2                 0.005763   0.029072   0.198   0.8436    
+rice_thai_5_percent.l2  0.021782   0.023819   0.914   0.3644    
+const                  -7.115257   4.872308  -1.460   0.1498    
+trend                   0.345285   0.144992   2.381   0.0207 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Residual standard error: 11.62 on 56 degrees of freedom
+Multiple R-Squared: 0.8753, Adjusted R-squared: 0.8597 
+F-statistic: 56.14 on 7 and 56 DF,  p-value: &lt; 2.2e-16 
+
+
+Estimation results for equation urea: 
+===================================== 
+urea = crude_oil_average.l1 + urea.l1 + rice_thai_5_percent.l1 + crude_oil_average.l2 + urea.l2 + rice_thai_5_percent.l2 + const + trend 
+
+                        Estimate Std. Error t value Pr(&gt;|t|)  
+crude_oil_average.l1     0.90768    1.31044   0.693   0.4914  
+urea.l1                  0.43438    0.21073   2.061   0.0439 *
+rice_thai_5_percent.l1   0.13706    0.16845   0.814   0.4193  
+crude_oil_average.l2    -0.24859    1.24918  -0.199   0.8430  
+urea.l2                 -0.23474    0.19724  -1.190   0.2390  
+rice_thai_5_percent.l2   0.09104    0.16160   0.563   0.5755  
+const                  -27.74140   33.05652  -0.839   0.4049  
+trend                    2.24397    0.98371   2.281   0.0264 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Residual standard error: 78.85 on 56 degrees of freedom
+Multiple R-Squared: 0.7017, Adjusted R-squared: 0.6644 
+F-statistic: 18.82 on 7 and 56 DF,  p-value: 1.211e-12 
+
+
+Estimation results for equation rice_thai_5_percent: 
+==================================================== 
+rice_thai_5_percent = crude_oil_average.l1 + urea.l1 + rice_thai_5_percent.l1 + crude_oil_average.l2 + urea.l2 + rice_thai_5_percent.l2 + const + trend 
+
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+crude_oil_average.l1    1.12728    1.19665   0.942   0.3502    
+urea.l1                 0.09061    0.19243   0.471   0.6395    
+rice_thai_5_percent.l1  0.65946    0.15382   4.287  7.2e-05 ***
+crude_oil_average.l2   -0.37610    1.14071  -0.330   0.7429    
+urea.l2                 0.10674    0.18011   0.593   0.5558    
+rice_thai_5_percent.l2 -0.26351    0.14757  -1.786   0.0796 .  
+const                  97.36944   30.18610   3.226   0.0021 ** 
+trend                   0.95522    0.89829   1.063   0.2922    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Residual standard error: 72 on 56 degrees of freedom
+Multiple R-Squared: 0.7531, Adjusted R-squared: 0.7222 
+F-statistic:  24.4 on 7 and 56 DF,  p-value: 7.192e-15 
+
+
+
+Covariance matrix of residuals:
+                    crude_oil_average   urea rice_thai_5_percent
+crude_oil_average               135.1  648.4               300.1
+urea                            648.4 6216.7              2736.0
+rice_thai_5_percent             300.1 2736.0              5183.9
+
+Correlation matrix of residuals:
+                    crude_oil_average   urea rice_thai_5_percent
+crude_oil_average              1.0000 0.7076              0.3587
+urea                           0.7076 1.0000              0.4820
+rice_thai_5_percent            0.3587 0.4820              1.0000</code></pre>
+</div>
+</div>
+</section>
+<section id="year-forecast" class="level3">
+<h3 class="anchored" data-anchor-id="year-forecast">10-Year Forecast</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>forecast_10yr <span class="ot">&lt;-</span> <span class="fu">predict</span>(var_model, <span class="at">n.ahead =</span> <span class="dv">10</span>, <span class="at">ci =</span> <span class="fl">0.95</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">plot</span>(forecast_10yr, </span>
+<span id="cb7-4"><a href="#cb7-4"></a>     <span class="at">names =</span> <span class="st">"rice_thai_5_percent"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5"></a>     <span class="at">main =</span> <span class="st">"10-Year Forecast: Benchmark SEA Rice Prices"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>     <span class="at">xlab =</span> <span class="st">"Year"</span>, </span>
+<span id="cb7-7"><a href="#cb7-7"></a>     <span class="at">ylab =</span> <span class="st">"Real Price ($/mt)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="proposal_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="impulse-response-function-irf" class="level3">
+<h3 class="anchored" data-anchor-id="impulse-response-function-irf">Impulse Response Function (IRF)</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>irf_model <span class="ot">&lt;-</span> <span class="fu">irf</span>(var_model, </span>
+<span id="cb8-2"><a href="#cb8-2"></a>                 <span class="at">impulse =</span> <span class="st">"urea"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3"></a>                 <span class="at">response =</span> <span class="st">"rice_thai_5_percent"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4"></a>                 <span class="at">n.ahead =</span> <span class="dv">10</span>, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>                 <span class="at">boot =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a>irf_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="at">year_after_shock =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="at">estimate =</span> <span class="fu">as.numeric</span>(irf_model<span class="sc">$</span>irf<span class="sc">$</span>urea),</span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="at">lower_ci =</span> <span class="fu">as.numeric</span>(irf_model<span class="sc">$</span>Lower<span class="sc">$</span>urea),</span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="at">upper_ci =</span> <span class="fu">as.numeric</span>(irf_model<span class="sc">$</span>Upper<span class="sc">$</span>urea)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>)</span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="fu">ggplot</span>(irf_df, <span class="fu">aes</span>(<span class="at">x =</span> year_after_shock, <span class="at">y =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower_ci, <span class="at">ymax =</span> upper_ci), <span class="at">fill =</span> <span class="st">"#D95F02"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#D95F02"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#D95F02"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-21"><a href="#cb8-21"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
+<span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray40"</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>)),</span>
+<span id="cb8-23"><a href="#cb8-23"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-24"><a href="#cb8-24"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb8-25"><a href="#cb8-25"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-27"><a href="#cb8-27"></a>    <span class="at">title =</span> <span class="st">"Macroeconomic Shock: Impact of Fertilizer Costs on Mekong Rice"</span>,</span>
+<span id="cb8-28"><a href="#cb8-28"></a>    <span class="at">subtitle =</span> <span class="st">"Impulse Response Function (VAR Model): Response to a systemic Urea price spike"</span>,</span>
+<span id="cb8-29"><a href="#cb8-29"></a>    <span class="at">x =</span> <span class="st">"Years Following the Initial Shock"</span>,</span>
+<span id="cb8-30"><a href="#cb8-30"></a>    <span class="at">y =</span> <span class="st">"Change in Rice Price ($/mt)"</span>,</span>
+<span id="cb8-31"><a href="#cb8-31"></a>    <span class="at">caption =</span> <span class="st">"Proxy applied for Cambodian Rice Markets | 95% Bootstrap CI"</span></span>
+<span id="cb8-32"><a href="#cb8-32"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="proposal_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../eda/eda-member3.html" class="pagination-link" aria-label="Member 3 First Name &amp; Last Name Initial">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Member 3 First Name &amp; Last Name Initial</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../appx/case-study.html" class="pagination-link" aria-label="Case Study">
+        <span class="nav-page-text"><span class="chapter-title">Case Study</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="an">title:</span><span class="co"> "Sunny Side Egg"</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">---</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">## Description</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="at">&gt; We wanted to explore the CMO dataset to understand the relationship between different commodities of various countries overtime, potentially exploring forecasting models for price prediction.</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="fu">## Library Used</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="in">```{r}</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="fu">library</span>(vars)</span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb9-16"><a href="#cb9-16"></a><span class="fu">library</span>(conflicted)</span>
+<span id="cb9-17"><a href="#cb9-17"></a></span>
+<span id="cb9-18"><a href="#cb9-18"></a><span class="fu">conflicts_prefer</span>(dplyr<span class="sc">::</span>select)</span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="in">```</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a></span>
+<span id="cb9-21"><a href="#cb9-21"></a><span class="fu">## Reasoning</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a><span class="fu">### Research Questions</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a></span>
+<span id="cb9-24"><a href="#cb9-24"></a><span class="at">&gt; Matin: What is the effect of fertilizers price on jasmine rice in the south east asian region?</span></span>
+<span id="cb9-25"><a href="#cb9-25"></a></span>
+<span id="cb9-26"><a href="#cb9-26"></a><span class="at">&gt; Jospeh: To understand the price changes of arabica, cocoa, robusta with regards to macroeconomic state of the world!</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a></span>
+<span id="cb9-28"><a href="#cb9-28"></a><span class="at">&gt; Ari: To understand the effects of crude oil prices impact different groups of commodities in terms of price or price projections.</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a></span>
+<span id="cb9-30"><a href="#cb9-30"></a><span class="fu">### Reason for Exploration</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a></span>
+<span id="cb9-32"><a href="#cb9-32"></a><span class="at">&gt; Group interests in the idea of how macroeconomics affects the world we live in, and our daily lives in regards to food materials.</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a></span>
+<span id="cb9-34"><a href="#cb9-34"></a><span class="fu">### Communication Policy</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a></span>
+<span id="cb9-36"><a href="#cb9-36"></a><span class="at">&gt; We have created a google chat, and we will be meeting every Thursday weekly at 3-4PM for overseeing process.</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a></span>
+<span id="cb9-38"><a href="#cb9-38"></a><span class="fu">### Roles</span></span>
+<span id="cb9-39"><a href="#cb9-39"></a></span>
+<span id="cb9-40"><a href="#cb9-40"></a><span class="at">&gt; Matin: technical assistant and main person of contact; will talk with Amin and preceptors</span></span>
+<span id="cb9-41"><a href="#cb9-41"></a></span>
+<span id="cb9-42"><a href="#cb9-42"></a><span class="at">&gt; Ari: technical lead</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a></span>
+<span id="cb9-44"><a href="#cb9-44"></a><span class="at">&gt; Joseph: Team Leader</span></span>
+<span id="cb9-45"><a href="#cb9-45"></a></span>
+<span id="cb9-46"><a href="#cb9-46"></a><span class="fu">### Conflict Resolution</span></span>
+<span id="cb9-47"><a href="#cb9-47"></a></span>
+<span id="cb9-48"><a href="#cb9-48"></a><span class="at">&gt; We will adapt to any sudden changes, and if anyone needs help we would offer replacement tasks. Accomodation is key in our group, and we will periodically checkup with each group members with their assigned tasks.</span></span>
+<span id="cb9-49"><a href="#cb9-49"></a></span>
+<span id="cb9-50"><a href="#cb9-50"></a><span class="fu">## Implementation Plan</span></span>
+<span id="cb9-51"><a href="#cb9-51"></a></span>
+<span id="cb9-52"><a href="#cb9-52"></a><span class="at">&gt; Ch1: Everyone comes up with a research question and initial plan or visualization so that we can vote on which is the best paths.</span></span>
+<span id="cb9-53"><a href="#cb9-53"></a></span>
+<span id="cb9-54"><a href="#cb9-54"></a><span class="fu">## Data</span></span>
+<span id="cb9-55"><a href="#cb9-55"></a><span class="fu">### Import</span></span>
+<span id="cb9-58"><a href="#cb9-58"></a><span class="in">```{r}</span></span>
+<span id="cb9-59"><a href="#cb9-59"></a>CMO_AnnualPrice <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw/CMO-AnnualPrice.csv"</span>)</span>
+<span id="cb9-60"><a href="#cb9-60"></a>CMO_AnnualPrice_Real <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw/CMO-AnnualPriceReal.csv"</span>)</span>
+<span id="cb9-61"><a href="#cb9-61"></a><span class="in">```</span></span>
+<span id="cb9-62"><a href="#cb9-62"></a></span>
+<span id="cb9-63"><a href="#cb9-63"></a><span class="at">&gt; CMO: Commodity Markets Output</span></span>
+<span id="cb9-64"><a href="#cb9-64"></a></span>
+<span id="cb9-65"><a href="#cb9-65"></a><span class="fu">### Data Cleaning</span></span>
+<span id="cb9-68"><a href="#cb9-68"></a><span class="in">```{r}</span></span>
+<span id="cb9-69"><a href="#cb9-69"></a>CMO_AnnualPrice <span class="ot">&lt;-</span> CMO_AnnualPrice[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">67</span><span class="sc">:</span><span class="dv">77</span>), ] <span class="co"># dropping the empty rows</span></span>
+<span id="cb9-70"><a href="#cb9-70"></a></span>
+<span id="cb9-71"><a href="#cb9-71"></a>cmo_clean <span class="ot">&lt;-</span> CMO_AnnualPrice_Real <span class="sc">%&gt;%</span></span>
+<span id="cb9-72"><a href="#cb9-72"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"..."</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-73"><a href="#cb9-73"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span><span class="fu">na_if</span>(., <span class="st">"…"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb9-74"><a href="#cb9-74"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span>Year, as.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-75"><a href="#cb9-75"></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb9-76"><a href="#cb9-76"></a><span class="in">```</span></span>
+<span id="cb9-77"><a href="#cb9-77"></a></span>
+<span id="cb9-78"><a href="#cb9-78"></a><span class="fu">### Time Series Data</span></span>
+<span id="cb9-81"><a href="#cb9-81"></a><span class="in">```{r}</span></span>
+<span id="cb9-82"><a href="#cb9-82"></a>model_data <span class="ot">&lt;-</span> cmo_clean <span class="sc">%&gt;%</span></span>
+<span id="cb9-83"><a href="#cb9-83"></a>  <span class="fu">select</span>(year, crude_oil_average, urea, rice_thai_5_percent) <span class="sc">%&gt;%</span></span>
+<span id="cb9-84"><a href="#cb9-84"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb9-85"><a href="#cb9-85"></a></span>
+<span id="cb9-86"><a href="#cb9-86"></a>ts_data <span class="ot">&lt;-</span> <span class="fu">ts</span>(model_data[, <span class="fu">c</span>(<span class="st">"crude_oil_average"</span>, <span class="st">"urea"</span>, <span class="st">"rice_thai_5_percent"</span>)], </span>
+<span id="cb9-87"><a href="#cb9-87"></a>              <span class="at">start =</span> <span class="fu">min</span>(model_data<span class="sc">$</span>year), </span>
+<span id="cb9-88"><a href="#cb9-88"></a>              <span class="at">frequency =</span> <span class="dv">1</span>)</span>
+<span id="cb9-89"><a href="#cb9-89"></a></span>
+<span id="cb9-90"><a href="#cb9-90"></a><span class="in">```</span></span>
+<span id="cb9-91"><a href="#cb9-91"></a></span>
+<span id="cb9-92"><a href="#cb9-92"></a><span class="fu">## Analysis</span></span>
+<span id="cb9-93"><a href="#cb9-93"></a><span class="fu">### VAR Model</span></span>
+<span id="cb9-96"><a href="#cb9-96"></a><span class="in">```{r}</span></span>
+<span id="cb9-97"><a href="#cb9-97"></a>var_model <span class="ot">&lt;-</span> vars<span class="sc">::</span><span class="fu">VAR</span>(ts_data, <span class="at">p =</span> <span class="dv">2</span>, <span class="at">type =</span> <span class="st">"both"</span>)</span>
+<span id="cb9-98"><a href="#cb9-98"></a><span class="fu">summary</span>(var_model)</span>
+<span id="cb9-99"><a href="#cb9-99"></a><span class="in">```</span></span>
+<span id="cb9-100"><a href="#cb9-100"></a></span>
+<span id="cb9-101"><a href="#cb9-101"></a><span class="fu">### 10-Year Forecast</span></span>
+<span id="cb9-104"><a href="#cb9-104"></a><span class="in">```{r}</span></span>
+<span id="cb9-105"><a href="#cb9-105"></a>forecast_10yr <span class="ot">&lt;-</span> <span class="fu">predict</span>(var_model, <span class="at">n.ahead =</span> <span class="dv">10</span>, <span class="at">ci =</span> <span class="fl">0.95</span>)</span>
+<span id="cb9-106"><a href="#cb9-106"></a></span>
+<span id="cb9-107"><a href="#cb9-107"></a><span class="fu">plot</span>(forecast_10yr, </span>
+<span id="cb9-108"><a href="#cb9-108"></a>     <span class="at">names =</span> <span class="st">"rice_thai_5_percent"</span>, </span>
+<span id="cb9-109"><a href="#cb9-109"></a>     <span class="at">main =</span> <span class="st">"10-Year Forecast: Benchmark SEA Rice Prices"</span>,</span>
+<span id="cb9-110"><a href="#cb9-110"></a>     <span class="at">xlab =</span> <span class="st">"Year"</span>, </span>
+<span id="cb9-111"><a href="#cb9-111"></a>     <span class="at">ylab =</span> <span class="st">"Real Price ($/mt)"</span>)</span>
+<span id="cb9-112"><a href="#cb9-112"></a><span class="in">```</span></span>
+<span id="cb9-113"><a href="#cb9-113"></a></span>
+<span id="cb9-114"><a href="#cb9-114"></a><span class="fu">### Impulse Response Function (IRF)</span></span>
+<span id="cb9-117"><a href="#cb9-117"></a><span class="in">```{r}</span></span>
+<span id="cb9-118"><a href="#cb9-118"></a>irf_model <span class="ot">&lt;-</span> <span class="fu">irf</span>(var_model, </span>
+<span id="cb9-119"><a href="#cb9-119"></a>                 <span class="at">impulse =</span> <span class="st">"urea"</span>, </span>
+<span id="cb9-120"><a href="#cb9-120"></a>                 <span class="at">response =</span> <span class="st">"rice_thai_5_percent"</span>, </span>
+<span id="cb9-121"><a href="#cb9-121"></a>                 <span class="at">n.ahead =</span> <span class="dv">10</span>, </span>
+<span id="cb9-122"><a href="#cb9-122"></a>                 <span class="at">boot =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-123"><a href="#cb9-123"></a></span>
+<span id="cb9-124"><a href="#cb9-124"></a>irf_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-125"><a href="#cb9-125"></a>  <span class="at">year_after_shock =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb9-126"><a href="#cb9-126"></a>  <span class="at">estimate =</span> <span class="fu">as.numeric</span>(irf_model<span class="sc">$</span>irf<span class="sc">$</span>urea),</span>
+<span id="cb9-127"><a href="#cb9-127"></a>  <span class="at">lower_ci =</span> <span class="fu">as.numeric</span>(irf_model<span class="sc">$</span>Lower<span class="sc">$</span>urea),</span>
+<span id="cb9-128"><a href="#cb9-128"></a>  <span class="at">upper_ci =</span> <span class="fu">as.numeric</span>(irf_model<span class="sc">$</span>Upper<span class="sc">$</span>urea)</span>
+<span id="cb9-129"><a href="#cb9-129"></a>)</span>
+<span id="cb9-130"><a href="#cb9-130"></a></span>
+<span id="cb9-131"><a href="#cb9-131"></a><span class="fu">ggplot</span>(irf_df, <span class="fu">aes</span>(<span class="at">x =</span> year_after_shock, <span class="at">y =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb9-132"><a href="#cb9-132"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb9-133"><a href="#cb9-133"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower_ci, <span class="at">ymax =</span> upper_ci), <span class="at">fill =</span> <span class="st">"#D95F02"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb9-134"><a href="#cb9-134"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#D95F02"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb9-135"><a href="#cb9-135"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#D95F02"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-136"><a href="#cb9-136"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb9-137"><a href="#cb9-137"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-138"><a href="#cb9-138"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
+<span id="cb9-139"><a href="#cb9-139"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray40"</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>)),</span>
+<span id="cb9-140"><a href="#cb9-140"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-141"><a href="#cb9-141"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb9-142"><a href="#cb9-142"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-143"><a href="#cb9-143"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-144"><a href="#cb9-144"></a>    <span class="at">title =</span> <span class="st">"Macroeconomic Shock: Impact of Fertilizer Costs on Mekong Rice"</span>,</span>
+<span id="cb9-145"><a href="#cb9-145"></a>    <span class="at">subtitle =</span> <span class="st">"Impulse Response Function (VAR Model): Response to a systemic Urea price spike"</span>,</span>
+<span id="cb9-146"><a href="#cb9-146"></a>    <span class="at">x =</span> <span class="st">"Years Following the Initial Shock"</span>,</span>
+<span id="cb9-147"><a href="#cb9-147"></a>    <span class="at">y =</span> <span class="st">"Change in Rice Price ($/mt)"</span>,</span>
+<span id="cb9-148"><a href="#cb9-148"></a>    <span class="at">caption =</span> <span class="st">"Proxy applied for Cambodian Rice Markets | 95% Bootstrap CI"</span></span>
+<span id="cb9-149"><a href="#cb9-149"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-150"><a href="#cb9-150"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>))</span>
+<span id="cb9-151"><a href="#cb9-151"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
