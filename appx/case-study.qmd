@@ -11,12 +11,13 @@ description: "https://my-sport-analysis.myshopify.com/blogs/sports-fivethirtyeig
 
 # Initial Review
 
-> Initial scroll through reveals that the data story is long. It keeps going and the texts are kept to a minimum. Although accesible and not intimidating at first, the second scroll through does make the data story rather repetitive, or obnoxious in terms of how large the visualizations are.
+> Initial scroll through reveals that the data story is long. It keeps going and the texts are kept to a minimum. Although accesible and not intimidating at first, the second scroll through does make the data story rather repetitive, or obnoxious in terms of how large the visualizations are. The data story format is very centered, with little room for anything on the sides. This has the effect of making the reader feel bombarded by vizualisation, often without enough proper context and introduction to feel immersed in the data story. 
+
 
 # Notable Elements
 
 ## Color
-> The color scheme used are on the brighter sides. Texts are distinguishable from the plots, headers and title are bolded and in huge font which set asides the paragraph from other paragraphs. Not sure if the color is made using scale_viridis, however it does look distinguishable enough so that there's accomadation for those with color disabilities. Captions and subtitles are greyed and lower opacity, which means the center of attention remains on the plot. 
+> The color scheme used are on the brighter sides. Texts are distinguishable from the plots, headers and title are bolded and in huge font which set asides the paragraph from other paragraphs. Not sure if the color is made using scale_viridis, however it does look distinguishable enough so that there's accomadation for those with color disabilities. Captions and subtitles are greyed and lower opacity, which means the center of attention remains on the plot. The consistency shown throughout the data story is helpful to keep track the parties and their overall support.
 
 > Color contrasts, used in the plot is used cleverly to create extreme contrasts, and buffer texts within the labels, using white space, or negative space. The overall theme is very clean and minimal. Furthermore, color association is used cleverly as well, for example far left being blue green, and far right being more red pigments.
 
