@@ -1,0 +1,41 @@
+---
+title: "Food Report"
+author:
+  - Ikareach Kimhor (Matin)
+  - Ari Cohen
+  - Joseph Saputra
+format: html
+date: "2026-10-23"
+description: "Our research question: ???"
+---
+# Library Used
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(vars)
+library(tseries)
+library(conflicted)
+
+conflicts_prefer(dplyr::select)
+setwd(getwd())
+```
+
+# Data
+## Import
+```{r}
+CMO_AnnualPrice <- read_csv("../data/raw/CMO-AnnualPrice.csv")
+CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
+```
+
+## Data Cleaning
+```{r}
+CMO_AnnualPrice <- CMO_AnnualPrice[-c(67:77), ] # dropping the empty rows
+
+cmo_clean <- CMO_AnnualPrice_Real %>%
+  select(-starts_with("...")) %>%
+  mutate(across(where(is.character), ~na_if(., "…"))) %>%
+  mutate(across(-Year, as.numeric)) %>%
+  clean_names()
+
+```

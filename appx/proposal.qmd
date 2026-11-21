@@ -1,5 +1,137 @@
 ---
-title: "Proposal"
+title: "Sunny Side Egg"
 ---
+## Description
+> We wanted to explore the CMO dataset to understand the relationship between different commodities of various countries overtime, potentially exploring forecasting models for price prediction.
 
-Your proposal go here.
+## Library Used
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(vars)
+library(tseries)
+library(conflicted)
+
+conflicts_prefer(dplyr::select)
+```
+
+## Reasoning
+### Research Questions
+
+> Matin: What is the effect of fertilizers price on jasmine rice in the south east asian region?
+
+> Jospeh: To understand the price changes of arabica, cocoa, robusta with regards to macroeconomic state of the world!
+
+> Ari: To understand the effects of crude oil prices impact different groups of commodities in terms of price or price projections.
+
+### Reason for Exploration
+
+> Group interests in the idea of how macroeconomics affects the world we live in, and our daily lives in regards to food materials.
+
+### Communication Policy
+
+> We have created a google chat, and we will be meeting every Thursday weekly at 3-4PM for overseeing process.
+
+### Roles
+
+> Matin: technical assistant and main person of contact; will talk with Amin and preceptors
+
+> Ari: technical lead
+
+> Joseph: Team Leader
+
+### Conflict Resolution
+
+> We will adapt to any sudden changes, and if anyone needs help we would offer replacement tasks. Accomodation is key in our group, and we will periodically checkup with each group members with their assigned tasks.
+
+## Implementation Plan
+
+> Ch1: Everyone comes up with a research question and initial plan or visualization so that we can vote on which is the best paths.
+
+## Data
+### Import
+```{r}
+CMO_AnnualPrice <- read_csv("../data/raw/CMO-AnnualPrice.csv")
+CMO_AnnualPrice_Real <- read_csv("../data/raw/CMO-AnnualPriceReal.csv")
+```
+
+> CMO: Commodity Markets Output
+
+### Data Cleaning
+```{r}
+CMO_AnnualPrice <- CMO_AnnualPrice[-c(67:77), ] # dropping the empty rows
+
+cmo_clean <- CMO_AnnualPrice_Real %>%
+  select(-starts_with("...")) %>%
+  mutate(across(where(is.character), ~na_if(., "…"))) %>%
+  mutate(across(-Year, as.numeric)) %>%
+  clean_names()
+```
+
+### Time Series Data
+```{r}
+model_data <- cmo_clean %>%
+  select(year, crude_oil_average, urea, rice_thai_5_percent) %>%
+  drop_na()
+
+ts_data <- ts(model_data[, c("crude_oil_average", "urea", "rice_thai_5_percent")], 
+              start = min(model_data$year), 
+              frequency = 1)
+
+```
+
+## Analysis
+### VAR Model
+```{r}
+var_model <- vars::VAR(ts_data, p = 2, type = "both")
+summary(var_model)
+```
+
+### 10-Year Forecast
+```{r}
+forecast_10yr <- predict(var_model, n.ahead = 10, ci = 0.95)
+
+plot(forecast_10yr, 
+     names = "rice_thai_5_percent", 
+     main = "10-Year Forecast: Benchmark SEA Rice Prices",
+     xlab = "Year", 
+     ylab = "Real Price ($/mt)")
+```
+
+### Impulse Response Function (IRF)
+```{r}
+irf_model <- irf(var_model, 
+                 impulse = "urea", 
+                 response = "rice_thai_5_percent", 
+                 n.ahead = 10, 
+                 boot = TRUE)
+
+irf_df <- data.frame(
+  year_after_shock = 0:10,
+  estimate = as.numeric(irf_model$irf$urea),
+  lower_ci = as.numeric(irf_model$Lower$urea),
+  upper_ci = as.numeric(irf_model$Upper$urea)
+)
+
+ggplot(irf_df, aes(x = year_after_shock, y = estimate)) +
+  geom_hline(yintercept = 0, color = "black", size = 0.8, linetype = "dashed") +
+  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci), fill = "#D95F02", alpha = 0.2) +
+  geom_line(color = "#D95F02", size = 1.2) +
+  geom_point(color = "#D95F02", size = 3) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, margin = margin(b = 10)),
+    plot.subtitle = element_text(color = "gray40", margin = margin(b = 20)),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  ) +
+  labs(
+    title = "Macroeconomic Shock: Impact of Fertilizer Costs on Mekong Rice",
+    subtitle = "Impulse Response Function (VAR Model): Response to a systemic Urea price spike",
+    x = "Years Following the Initial Shock",
+    y = "Change in Rice Price ($/mt)",
+    caption = "Proxy applied for Cambodian Rice Markets | 95% Bootstrap CI"
+  ) +
+  scale_x_continuous(breaks = seq(0, 10, 2))
+```
